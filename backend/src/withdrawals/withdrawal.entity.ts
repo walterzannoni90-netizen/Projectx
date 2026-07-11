@@ -33,8 +33,8 @@ export class Withdrawal {
   @Column({ name: 'wallet_id' })
   walletId: string;
 
-  @Column({ type: 'enum', enum: WalletChain })
-  chain: WalletChain;
+  @Column({ type: 'varchar' })
+  chain: string;
 
   @Column({ name: 'to_address', type: 'text' })
   toAddress: string;
@@ -66,8 +66,8 @@ export class Withdrawal {
   @Column({ name: 'tx_hash', nullable: true })
   txHash: string;
 
-  @Column({ type: 'enum', enum: TransactionStatus, default: TransactionStatus.PENDING })
-  status: TransactionStatus;
+  @Column({ type: 'varchar', default: 'pending' })
+  status: string;
 
   @Column({ name: 'rejection_reason', nullable: true })
   rejectionReason: string;

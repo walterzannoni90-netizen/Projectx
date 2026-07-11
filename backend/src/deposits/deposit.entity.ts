@@ -33,8 +33,8 @@ export class Deposit {
   @Column({ name: 'wallet_id' })
   walletId: string;
 
-  @Column({ type: 'enum', enum: WalletChain })
-  chain: WalletChain;
+  @Column({ type: 'varchar' })
+  chain: string;
 
   @Column({ name: 'tx_hash', nullable: true, unique: true })
   txHash: string;
@@ -60,8 +60,8 @@ export class Deposit {
   @Column({ name: 'required_confirmations', default: 12 })
   requiredConfirmations: number;
 
-  @Column({ type: 'enum', enum: TransactionStatus, default: TransactionStatus.PENDING })
-  status: TransactionStatus;
+  @Column({ type: 'varchar', default: 'pending' })
+  status: string;
 
   @Column({ name: 'completed_at', type: 'timestamptz', nullable: true })
   completedAt: Date;

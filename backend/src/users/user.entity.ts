@@ -45,8 +45,8 @@ export class User {
   @Column({ name: 'referred_by', nullable: true })
   referredById: string;
 
-  @Column({ type: 'enum', enum: UserStatus, default: UserStatus.PENDING })
-  status: UserStatus;
+  @Column({ type: 'varchar', default: 'pending' })
+  status: string;
 
   @Column({ name: 'email_verified_at', type: 'timestamptz', nullable: true })
   emailVerifiedAt: Date;
@@ -57,7 +57,7 @@ export class User {
   @Column({ name: 'two_factor_enabled', default: false })
   twoFactorEnabled: boolean;
 
-  @Column({ name: 'two_factor_secret', nullable: true })
+  @Column({ name: 'two_factor_secret', type: 'varchar', nullable: true })
   twoFactorSecret: string | null;
 
   @Column({ name: 'pin_hash', nullable: true })
@@ -69,7 +69,7 @@ export class User {
   @Column({ name: 'last_login_at', type: 'timestamptz', nullable: true })
   lastLoginAt: Date;
 
-  @Column({ name: 'last_login_ip', type: 'inet', nullable: true })
+  @Column({ name: 'last_login_ip', type: 'varchar', nullable: true })
   lastLoginIp: string;
 
   @CreateDateColumn({ name: 'created_at' })

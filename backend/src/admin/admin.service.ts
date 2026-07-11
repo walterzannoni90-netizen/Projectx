@@ -27,7 +27,7 @@ export class AdminService {
 
   async getDashboard() {
     const totalUsers = await this.userRepository.count();
-    const activeUsers = await this.userRepository.count({ where: { status: 'active' as any } });
+    const activeUsers = await this.userRepository.count({ where: { status: 'active' } });
     const totalDeposits = await this.depositRepository
       .createQueryBuilder('d')
       .select('COALESCE(SUM(d.amount), 0)', 'total')
@@ -39,10 +39,10 @@ export class AdminService {
       .where('w.status = :status', { status: 'completed' })
       .getRawOne();
     const pendingWithdrawals = await this.withdrawalRepository.count({
-      where: { status: 'pending' as any },
+      where: { status: 'pending' },
     });
     const pendingDeposits = await this.depositRepository.count({
-      where: { status: 'pending' as any },
+      where: { status: 'pending' },
     });
 
     const totalFees = await this.transactionRepository
@@ -121,7 +121,7 @@ export class AdminService {
 
   async getPendingWithdrawals() {
     return this.withdrawalRepository.find({
-      where: { status: 'pending' as any },
+      where: { status: 'pending' },
       relations: ['user'],
       order: { createdAt: 'ASC' },
     });

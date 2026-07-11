@@ -40,8 +40,8 @@ export class QuantizationHistory {
   @Column({ name: 'yield_percent', type: 'decimal', precision: 10, scale: 6 })
   yieldPercent: number;
 
-  @Column({ type: 'enum', enum: QuantizationStatus })
-  status: QuantizationStatus;
+  @Column({ type: 'varchar' })
+  status: string;
 
   @Column({ name: 'completed_at', type: 'timestamptz' })
   completedAt: Date;

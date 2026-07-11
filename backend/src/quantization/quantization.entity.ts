@@ -38,8 +38,8 @@ export class Quantization {
   @Column({ name: 'daily_yield', type: 'decimal', precision: 20, scale: 8, default: 0 })
   dailyYield: number;
 
-  @Column({ type: 'enum', enum: QuantizationStatus, default: QuantizationStatus.IDLE })
-  status: QuantizationStatus;
+  @Column({ type: 'varchar', default: 'idle' })
+  status: string;
 
   @Column({ name: 'started_at', type: 'timestamptz', nullable: true })
   startedAt: Date;

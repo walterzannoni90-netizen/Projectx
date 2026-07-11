@@ -22,8 +22,8 @@ export class WalletAddress {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column({ type: 'enum', enum: WalletChain })
-  chain: WalletChain;
+  @Column({ type: 'varchar' })
+  chain: string;
 
   @Column({ type: 'text' })
   address: string;

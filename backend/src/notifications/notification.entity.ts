@@ -23,8 +23,8 @@ export class Notification {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column({ type: 'enum', enum: NotificationType })
-  type: NotificationType;
+  @Column({ type: 'varchar' })
+  type: string;
 
   @Column({ length: 255 })
   title: string;

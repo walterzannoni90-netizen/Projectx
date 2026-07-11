@@ -30,8 +30,8 @@ export class Transaction {
   @JoinColumn({ name: 'wallet_id' })
   wallet: Wallet;
 
-  @Column({ type: 'enum', enum: TransactionType })
-  type: TransactionType;
+  @Column({ type: 'varchar' })
+  type: string;
 
   @Column({ type: 'decimal', precision: 20, scale: 8 })
   amount: number;

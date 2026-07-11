@@ -38,7 +38,7 @@ export class WithdrawalsService {
 
     // Check cooldown (48h between withdrawals)
     const lastWithdrawal = await this.withdrawalRepository.findOne({
-      where: { userId, status: TransactionStatus.COMPLETED },
+      where: { userId, status: 'completed' },
       order: { createdAt: 'DESC' },
     });
     if (lastWithdrawal) {
@@ -75,7 +75,7 @@ export class WithdrawalsService {
       fee,
       pinVerified: true,
       pinVerifiedAt: new Date(),
-      status: TransactionStatus.PENDING,
+      status: 'pending',
       amountUsd: data.amount,
     });
     await this.withdrawalRepository.save(withdrawal);
@@ -115,7 +115,7 @@ export class WithdrawalsService {
     const withdrawal = await this.withdrawalRepository.findOne({ where: { id: withdrawalId } });
     if (!withdrawal) throw new NotFoundException('Withdrawal not found');
 
-    withdrawal.status = TransactionStatus.PROCESSING;
+    withdrawal.status = 'processing';
     withdrawal.adminApprovedBy = adminId;
     withdrawal.adminApprovedAt = new Date();
     return this.withdrawalRepository.save(withdrawal);
@@ -125,7 +125,7 @@ export class WithdrawalsService {
     const withdrawal = await this.withdrawalRepository.findOne({ where: { id: withdrawalId } });
     if (!withdrawal) throw new NotFoundException('Withdrawal not found');
 
-    withdrawal.status = TransactionStatus.COMPLETED;
+    withdrawal.status = 'completed';
     withdrawal.txHash = txHash;
     withdrawal.completedAt = new Date();
 
@@ -142,7 +142,7 @@ export class WithdrawalsService {
     const withdrawal = await this.withdrawalRepository.findOne({ where: { id: withdrawalId } });
     if (!withdrawal) throw new NotFoundException('Withdrawal not found');
 
-    withdrawal.status = TransactionStatus.CANCELLED;
+    withdrawal.status = 'cancelled';
     withdrawal.rejectionReason = reason;
 
     // Refund to wallet

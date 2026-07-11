@@ -25,7 +25,7 @@ export class QuantizationService {
 
   async startQuantization(userId: string) {
     const active = await this.quantRepository.findOne({
-      where: { userId, status: QuantizationStatus.RUNNING },
+      where: { userId, status: 'running' },
     });
     if (active) {
       throw new BadRequestException('Quantization already in progress');
@@ -54,7 +54,7 @@ export class QuantizationService {
     const todayCompleted = await this.quantRepository
       .createQueryBuilder('q')
       .where('q.user_id = :userId', { userId })
-      .andWhere('q.status = :status', { status: QuantizationStatus.COMPLETED })
+      .andWhere('q.status = :status', { status: 'completed' })
       .andWhere('q.completed_at >= :today', { today })
       .getCount();
 
@@ -72,7 +72,7 @@ export class QuantizationService {
       amountInvested: capital,
       expectedReturn,
       dailyYield: dailyYield,
-      status: QuantizationStatus.RUNNING,
+      status: 'running',
       startedAt: new Date(),
     });
     await this.quantRepository.save(quantization);
@@ -88,7 +88,7 @@ export class QuantizationService {
 
   async completeQuantization(quantizationId: string) {
     const quant = await this.quantRepository.findOne({ where: { id: quantizationId } });
-    if (!quant || quant.status !== QuantizationStatus.RUNNING) {
+    if (!quant || quant.status !== 'running') {
       throw new BadRequestException('Invalid quantization');
     }
 
@@ -96,7 +96,7 @@ export class QuantizationService {
     const durationSeconds = Math.floor(durationMs / 1000);
     const actualReturn = Number(quant.expectedReturn);
 
-    quant.status = QuantizationStatus.COMPLETED;
+    quant.status = 'completed';
     quant.actualReturn = actualReturn;
     quant.completedAt = new Date();
     quant.durationSeconds = durationSeconds;
@@ -109,7 +109,7 @@ export class QuantizationService {
       amount: Number(quant.amountInvested),
       returnAmount: actualReturn,
       yieldPercent: Number(quant.dailyYield) / Number(quant.amountInvested) * 100,
-      status: QuantizationStatus.COMPLETED,
+      status: 'completed',
       completedAt: new Date(),
     });
 
@@ -141,11 +141,11 @@ export class QuantizationService {
 
   async getStatus(userId: string) {
     const active = await this.quantRepository.findOne({
-      where: { userId, status: QuantizationStatus.RUNNING },
+      where: { userId, status: 'running' },
     });
 
     const completed = await this.quantRepository.find({
-      where: { userId, status: QuantizationStatus.COMPLETED },
+      where: { userId, status: 'completed' },
       order: { completedAt: 'DESC' },
       take: 20,
     });
@@ -164,7 +164,7 @@ export class QuantizationService {
   @Cron(CronExpression.EVERY_MINUTE)
   async processQuantizations() {
     const running = await this.quantRepository.find({
-      where: { status: QuantizationStatus.RUNNING },
+      where: { status: 'running' },
     });
 
     for (const quant of running) {

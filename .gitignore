@@ -3,7 +3,8 @@ dist/
 .next/
 .env
 .env.local
-*.log
-.DS_Store
+*.db
+data/
 coverage/
 *.tsbuildinfo
+.DS_Store

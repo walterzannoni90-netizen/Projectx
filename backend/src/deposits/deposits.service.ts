@@ -30,7 +30,7 @@ export class DepositsService {
     const deposit = await this.depositRepository.findOne({ where: { id: depositId } });
     if (!deposit) throw new NotFoundException('Deposit not found');
 
-    deposit.status = TransactionStatus.COMPLETED;
+    deposit.status = 'completed';
     deposit.completedAt = new Date();
     deposit.confirmations = deposit.requiredConfirmations;
     await this.depositRepository.save(deposit);

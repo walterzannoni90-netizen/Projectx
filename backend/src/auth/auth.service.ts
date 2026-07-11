@@ -75,7 +75,7 @@ export class AuthService {
       nickname: dto.nickname || dto.email.split('@')[0],
       referralCode: refCode,
       referredById: referrer?.id,
-      status: UserStatus.ACTIVE,
+      status: 'active',
       emailVerifiedAt: new Date(),
     });
     await this.userRepository.save(user);
@@ -126,7 +126,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    if (user.status !== UserStatus.ACTIVE) {
+    if (user.status !== 'active') {
       throw new UnauthorizedException('Account is ' + user.status);
     }
 

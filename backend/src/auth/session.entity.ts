@@ -19,7 +19,7 @@ export class Session {
   @Column({ name: 'user_agent', nullable: true })
   userAgent: string;
 
-  @Column({ name: 'ip_address', type: 'inet', nullable: true })
+  @Column({ name: 'ip_address', type: 'varchar', nullable: true })
   ipAddress: string;
 
   @Column({ name: 'device_name', length: 255, nullable: true })

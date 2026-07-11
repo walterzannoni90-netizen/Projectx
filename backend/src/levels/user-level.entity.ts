@@ -22,6 +22,7 @@ export class UserLevel {
   currentLevel: Level;
 
   @Column({ name: 'next_level_id', nullable: true })
+@Column({ name: 'next_level_id', type: 'varchar', nullable: true })
   nextLevelId: string | null;
 
   @Column({ name: 'current_capital', type: 'decimal', precision: 20, scale: 8, default: 0 })
