@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Deposit, TransactionStatus } from './deposit.entity';
@@ -12,9 +13,13 @@ export class DepositsService {
     @InjectRepository(Deposit) private depositRepository: Repository<Deposit>,
     @InjectRepository(Wallet) private walletRepository: Repository<Wallet>,
     private walletsService: WalletsService,
+    private readonly config: ConfigService,
   ) {}
 
   async create(data: Partial<Deposit>) {
+    if (this.config.get('NODE_ENV') === 'production' && this.config.get('ENABLE_FINANCIAL_SIMULATION') !== 'true') {
+      throw new ServiceUnavailableException('Deposits require a verified blockchain provider');
+    }
     const deposit = this.depositRepository.create(data);
     return this.depositRepository.save(deposit);
   }
@@ -29,6 +34,7 @@ export class DepositsService {
   async confirmDeposit(depositId: string) {
     const deposit = await this.depositRepository.findOne({ where: { id: depositId } });
     if (!deposit) throw new NotFoundException('Deposit not found');
+    if (deposit.status === 'completed') return deposit;
 
     deposit.status = 'completed';
     deposit.completedAt = new Date();
