@@ -29,18 +29,18 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       )}
 
       <aside className={cn(
-        'fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-100 shadow-sm',
+        'fixed top-0 left-0 z-50 h-full w-72 border-r border-white/10 bg-[#080d1d] text-white shadow-2xl',
         'transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto',
         open ? 'translate-x-0' : '-translate-x-full',
       )}>
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+          <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
                 <TrendingUp className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold text-gray-900">Project X</span>
+              <div><span className="block text-lg font-bold text-white">Project X</span><span className="text-[10px] uppercase tracking-[.2em] text-cyan-300">Control center</span></div>
             </Link>
             <button onClick={onClose} className="lg:hidden text-gray-400 hover:text-gray-600">
               <ChevronLeft className="w-5 h-5" />
@@ -60,11 +60,11 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
                   className={cn(
                     'flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-950/30'
+                      : 'text-slate-400 hover:bg-white/5 hover:text-white',
                   )}
                 >
-                  <Icon className={cn('w-5 h-5', isActive ? 'text-primary-600' : 'text-gray-400')} />
+                  <Icon className={cn('w-5 h-5', isActive ? 'text-cyan-200' : 'text-slate-500')} />
                   {item.label}
                   {item.label === 'Notifiche' && (
                     <span className="ml-auto w-2 h-2 bg-red-500 rounded-full" />
@@ -75,7 +75,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           </nav>
 
           {/* Bottom */}
-          <div className="px-3 py-4 border-t border-gray-100 space-y-1">
+          <div className="px-3 py-4 border-t border-white/10 space-y-1">
             <Link
               href="/profile"
               onClick={onClose}
