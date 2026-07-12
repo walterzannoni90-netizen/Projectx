@@ -76,7 +76,6 @@ export class AuthService {
       referralCode: refCode,
       referredById: referrer?.id,
       status: 'active',
-      emailVerifiedAt: null,
     });
     await this.userRepository.save(user);
 
