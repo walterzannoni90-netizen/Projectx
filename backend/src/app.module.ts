@@ -46,7 +46,7 @@ const useSQLite = process.env.USE_SQLITE === 'true';
           password: process.env.DB_PASSWORD,
           database: process.env.DB_DATABASE || 'postgres',
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          synchronize: true,
+          synchronize: process.env.NODE_ENV !== 'production',
           ssl: { rejectUnauthorized: false },
           autoLoadEntities: true,
           extra: {

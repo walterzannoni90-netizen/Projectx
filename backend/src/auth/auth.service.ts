@@ -76,7 +76,7 @@ export class AuthService {
       referralCode: refCode,
       referredById: referrer?.id,
       status: 'active',
-      emailVerifiedAt: new Date(),
+      emailVerifiedAt: null,
     });
     await this.userRepository.save(user);
 
@@ -204,8 +204,9 @@ export class AuthService {
 
     // In production, send email with reset link
     // For now, generate and store token
-    const resetToken = uuidv4();
-    this.logger.log(`Password reset requested for ${email}: ${resetToken}`);
+    // A production mail provider must create and deliver a short-lived,
+    // single-use token. Never log password-reset credentials.
+    this.logger.log('Password reset requested');
     return { message: 'If the email exists, a reset link has been sent' };
   }
 

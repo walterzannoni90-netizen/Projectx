@@ -1,4 +1,5 @@
-import { Injectable, BadRequestException, NotFoundException, Logger } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, Logger, ServiceUnavailableException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, MoreThanOrEqual } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
@@ -21,9 +22,13 @@ export class QuantizationService {
     @InjectRepository(UserLevel) private userLevelRepository: Repository<UserLevel>,
     @InjectRepository(Level) private levelRepository: Repository<Level>,
     private walletsService: WalletsService,
+    private readonly config: ConfigService,
   ) {}
 
   async startQuantization(userId: string) {
+    if (this.config.get('NODE_ENV') === 'production' && this.config.get('ENABLE_FINANCIAL_SIMULATION') !== 'true') {
+      throw new ServiceUnavailableException('Simulation engine is disabled in production');
+    }
     const active = await this.quantRepository.findOne({
       where: { userId, status: 'running' },
     });
@@ -163,6 +168,7 @@ export class QuantizationService {
 
   @Cron(CronExpression.EVERY_MINUTE)
   async processQuantizations() {
+    if (this.config.get('NODE_ENV') === 'production' && this.config.get('ENABLE_FINANCIAL_SIMULATION') !== 'true') return;
     const running = await this.quantRepository.find({
       where: { status: 'running' },
     });

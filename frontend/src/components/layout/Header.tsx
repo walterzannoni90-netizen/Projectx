@@ -10,7 +10,7 @@ export function Header() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
       <div className="flex items-center justify-between px-4 lg:px-6 h-16">
         <button
           onClick={toggleSidebar}
@@ -32,12 +32,12 @@ export function Header() {
 
           <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-medium text-gray-900">{user?.nickname || 'User'}</p>
+              <p className="text-sm font-semibold text-gray-900">{user?.nickname || 'User'}</p>
               <p className="text-xs text-gray-500">{user?.email}</p>
             </div>
-            <div className="w-9 h-9 bg-primary-100 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20">
               <span className="text-sm font-semibold text-primary-700">
-                {(user?.nickname || 'U').charAt(0).toUpperCase()}
+                <span className="text-white">{(user?.nickname || 'U').charAt(0).toUpperCase()}</span>
               </span>
             </div>
           </div>

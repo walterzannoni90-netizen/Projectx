@@ -2,9 +2,11 @@ import { Controller, Get, Post, Put, Param, Body, Query, UseGuards } from '@nest
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AdminService } from './admin.service';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { AdminGuard } from '../common/guards/admin.guard';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
 
 @ApiTags('Admin')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, AdminGuard)
 @ApiBearerAuth()
 @Controller('admin')
 export class AdminController {
@@ -51,7 +53,7 @@ export class AdminController {
   @ApiOperation({ summary: 'Approve withdrawal' })
   async approveWithdrawal(
     @Param('id') id: string,
-    @Body('adminId') adminId: string,
+    @CurrentUser('id') adminId: string,
   ) {
     return this.adminService.approveWithdrawal(id, adminId);
   }
