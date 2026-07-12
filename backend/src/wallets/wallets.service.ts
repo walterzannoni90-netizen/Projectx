@@ -1,4 +1,5 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Wallet } from './wallet.entity';
@@ -11,6 +12,7 @@ export class WalletsService {
     @InjectRepository(Wallet) private walletRepository: Repository<Wallet>,
     @InjectRepository(WalletAddress) private addressRepository: Repository<WalletAddress>,
     @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>,
+    private readonly config: ConfigService,
   ) {}
 
   async getBalance(userId: string) {
@@ -45,6 +47,9 @@ export class WalletsService {
   }
 
   async generateAddress(userId: string, chain: WalletChain) {
+    if (this.config.get('NODE_ENV') === 'production' && this.config.get('ENABLE_FINANCIAL_SIMULATION') !== 'true') {
+      throw new ServiceUnavailableException('Deposit addresses are unavailable until a verified blockchain provider is configured');
+    }
     // In production, this would call a blockchain API to generate a deposit address
     // For now, generate a placeholder
     const existing = await this.addressRepository.findOne({ where: { userId, chain } });
