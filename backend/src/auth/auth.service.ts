@@ -214,7 +214,7 @@ export class AuthService {
     if (!user) throw new UnauthorizedException('User not found');
 
     const secret = speakeasy.generateSecret({
-      name: `ProjectX:${user.email}`,
+      name: `NUMMY:${user.email}`,
     });
 
     user.twoFactorSecret = secret.base32;

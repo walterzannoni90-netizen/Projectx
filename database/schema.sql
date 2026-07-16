@@ -479,12 +479,8 @@ VALUES
      10.00, 7.00, 5.00, 11.25,
      '{"features": ["8 quantizzazioni/giorno", "Fee ridotte del 25%", "Bonus referral 10%", "Supporto Concierge"], "color": "#6A0DAD"}');
 
--- ============================================================
--- SEED DATA: Default admin user
--- Password: Admin12345! (bcrypt hash)
--- ============================================================
-INSERT INTO admin_users (email, password_hash, name, role)
-VALUES ('walterzannoni90@outlook.it', '$2b$10$8KzQMG5x5L5x5L5x5L5x5O5x5L5x5L5x5L5x5L5x5L5x5L5x5L5', 'Walter Zannoni', 'superadmin');
+-- Nessun amministratore viene creato automaticamente.
+-- Il primo superadmin deve essere provisionato tramite un flusso sicuro fuori dal repository.
 
 -- ============================================================
 -- SEED DATA: Default settings
@@ -499,8 +495,8 @@ VALUES
     ('maintenance_mode', '{"enabled": false}', 'Modalità manutenzione', 'system', true),
     ('signup_enabled', '{"enabled": true}', 'Registrazione aperta', 'system', true),
     ('quantization_cooldown_seconds', '{"seconds": 3600}', 'Cooldown tra quantizzazioni', 'quantization', true),
-    ('platform_name', '{"name": "Project X"}', 'Nome piattaforma', 'general', true),
-    ('support_email', '{"email": "support@projectx.com"}', 'Email supporto', 'general', true);
+    ('platform_name', '{"name": "NUMMY"}', 'Nome piattaforma', 'general', true),
+    ('support_email', '{"email": "support@nummy.com"}', 'Email supporto', 'general', true);
 
 -- ============================================================
 -- ROW LEVEL SECURITY (RLS)

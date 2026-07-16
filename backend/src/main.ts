@@ -29,8 +29,8 @@ async function bootstrap() {
 
   // Swagger
   const config = new DocumentBuilder()
-    .setTitle('Project X API')
-    .setDescription('API documentation for Project X platform')
+    .setTitle('NUMMY API')
+    .setDescription('API documentation for NUMMY platform')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

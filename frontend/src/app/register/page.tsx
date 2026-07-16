@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Toaster, toast } from 'react-hot-toast';
 import { authApi } from '@/lib/api';
 import { useAuthStore } from '@/lib/store';
-import { TrendingUp, Mail, Lock, User, Gift } from 'lucide-react';
+import { Mail, Lock, User, Gift } from 'lucide-react';
 
 function RegisterForm() {
   const router = useRouter();
@@ -39,11 +39,9 @@ function RegisterForm() {
     <div className="flex-1 flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <TrendingUp className="w-6 h-6 text-white" />
-          </div>
+          <img src="/images/nummy-logo.png" alt="NUMMY" className="w-20 h-20 object-cover rounded-2xl mx-auto mb-3" />
           <h1 className="text-2xl font-bold text-gray-900">Crea Account</h1>
-          <p className="text-gray-500 mt-1">Inizia il tuo viaggio con Project X</p>
+          <p className="text-gray-500 mt-1">Inizia il tuo viaggio con NUMMY</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
