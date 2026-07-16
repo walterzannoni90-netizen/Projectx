@@ -17,12 +17,10 @@ export default function Home() {
   }, [isAuthenticated, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-blue-50">
+    <div className="min-h-screen flex items-center justify-center bg-[#090B14]">
       <div className="text-center">
-        <div className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
-          <div className="w-8 h-8 border-2 border-white rounded" />
-        </div>
-        <p className="text-gray-500">Caricamento...</p>
+        <img src="/images/nummy-logo.png" alt="NUMMY" className="w-24 h-24 object-cover rounded-3xl mx-auto mb-4 animate-pulse" />
+        <p className="text-slate-400 tracking-wide">Smart. Simple. For you.</p>
       </div>
     </div>
   );

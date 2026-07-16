@@ -1,100 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
-    --radius: 0.75rem;
+    --nummy-bg: #090B14;
+    --nummy-surface: #111520;
+    --nummy-turquoise: #00BFA6;
+    --nummy-petroleum: #007C87;
+    --nummy-magenta: #FF2D8F;
+    --nummy-orange: #FF8A00;
   }
 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-gray-200;
-  }
+  * { @apply border-white/10; }
+  html { color-scheme: dark; }
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-[#090B14] text-white antialiased;
+    font-family: 'Manrope', system-ui, sans-serif;
   }
+  ::selection { background: rgba(0, 191, 166, .3); color: #fff; }
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20 hover:-translate-y-0.5;
-  }
-  .btn-secondary {
-    @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-2.5 px-5 rounded-xl transition-all duration-200;
-  }
-  .btn-outline {
-    @apply border-2 border-gray-200 hover:border-primary-500 hover:text-primary-600 font-medium py-2.5 px-5 rounded-xl transition-all duration-200;
-  }
-  .btn-danger {
-    @apply bg-red-500 hover:bg-red-600 text-white font-medium py-2.5 px-5 rounded-xl transition-all duration-200;
-  }
-  .card {
-    @apply bg-white/90 backdrop-blur rounded-2xl border border-white shadow-lg shadow-slate-900/5 p-6;
-  }
-  .card-hover {
-    @apply card hover:shadow-md hover:border-primary-100 transition-all duration-200;
-  }
-  .input-field {
-    @apply w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
-  }
-  .label {
-    @apply block text-sm font-medium text-gray-700 mb-1.5;
-  }
-  .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-  }
-  .badge-success {
-    @apply badge bg-green-100 text-green-800;
-  }
-  .badge-warning {
-    @apply badge bg-yellow-100 text-yellow-800;
-  }
-  .badge-danger {
-    @apply badge bg-red-100 text-red-800;
-  }
-  .badge-info {
-    @apply badge bg-blue-100 text-blue-800;
-  }
+  .brand-gradient { background: linear-gradient(115deg, #00BFA6 0%, #007C87 28%, #FF2D8F 64%, #FF8A00 100%); }
+  .brand-text { @apply bg-clip-text text-transparent; background-image: linear-gradient(100deg, #00BFA6, #FF2D8F 58%, #FF8A00); }
+  .btn-primary { @apply bg-primary-500 hover:bg-primary-400 text-[#090B14] font-bold py-2.5 px-5 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary-500/20 hover:-translate-y-0.5; }
+  .btn-secondary { @apply bg-white/10 hover:bg-white/15 text-white font-medium py-2.5 px-5 rounded-xl transition-all duration-200; }
+  .btn-outline { @apply border border-white/15 hover:border-primary-500 hover:text-primary-400 font-medium py-2.5 px-5 rounded-xl transition-all duration-200; }
+  .btn-danger { @apply bg-red-500 hover:bg-red-600 text-white font-medium py-2.5 px-5 rounded-xl transition-all duration-200; }
+  .card { @apply bg-[#111520]/95 backdrop-blur rounded-2xl border border-white/10 shadow-2xl shadow-black/20 p-6; }
+  .card-hover { @apply card hover:border-primary-500/40 hover:-translate-y-0.5 transition-all duration-200; }
+  .input-field { @apply w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200; }
+  .label { @apply block text-sm font-medium text-slate-300 mb-1.5; }
+  .badge { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium; }
+  .badge-success { @apply badge bg-primary-500/15 text-primary-300; }
+  .badge-warning { @apply badge bg-orange-500/15 text-orange-300; }
+  .badge-danger { @apply badge bg-red-500/15 text-red-300; }
+  .badge-info { @apply badge bg-secondary-500/15 text-secondary-300; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+@layer utilities {
+  .bg-white { background-color: #111520; }
+  .bg-slate-50, .bg-gray-50 { background-color: #090B14; }
+  .bg-gray-100 { background-color: rgba(255,255,255,.08); }
+  .text-gray-900, .text-slate-900 { color: #fff; }
+  .text-gray-800, .text-gray-700 { color: #d7dce5; }
+  .text-gray-600, .text-gray-500 { color: #98a2b3; }
+  .border-gray-100, .border-gray-200, .border-slate-200 { border-color: rgba(255,255,255,.1); }
 }

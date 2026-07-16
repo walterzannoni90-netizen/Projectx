@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Toaster, toast } from 'react-hot-toast';
 import { authApi } from '@/lib/api';
 import { useAuthStore } from '@/lib/store';
-import { TrendingUp, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,10 +38,8 @@ export default function LoginPage() {
         <div className="flex-1 flex items-center justify-center px-6 py-12">
           <div className="w-full max-w-sm">
             <div className="text-center mb-8">
-              <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center mx-auto mb-3">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <h1 className="text-2xl font-bold text-gray-900">Project X</h1>
+              <img src="/images/nummy-logo.png" alt="NUMMY" className="w-20 h-20 object-cover rounded-2xl mx-auto mb-3" />
+              <h1 className="text-2xl font-extrabold tracking-[.2em] text-white">NUMMY</h1>
               <p className="text-gray-500 mt-1">Accedi al tuo account</p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -81,10 +79,10 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
-        <div className="hidden lg:flex flex-1 bg-gradient-to-br from-primary-600 to-primary-800 items-center justify-center p-12">
+        <div className="hidden lg:flex flex-1 bg-[radial-gradient(circle_at_top_left,_rgba(0,191,166,.26),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(255,45,143,.22),_transparent_36%),#111520] items-center justify-center p-12">
           <div className="max-w-md text-white">
-            <h2 className="text-3xl font-bold mb-4">Benvenuto su Project X</h2>
-            <p className="text-primary-100 leading-relaxed mb-6">
+            <h2 className="text-3xl font-bold mb-4">Benvenuto su NUMMY</h2>
+            <p className="text-slate-300 leading-relaxed mb-6">
               La piattaforma di quantizzazione AI che ti permette di far crescere il tuo capitale
               in modo semplice, veloce e sicuro.
             </p>
@@ -92,7 +90,7 @@ export default function LoginPage() {
               {['Wallet multi-chain', 'Quantizzazione AI', 'Sistema Referral', 'Sicurezza avanzata'].map((f) => (
                 <div key={f} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                  <span className="text-primary-100">{f}</span>
+                  <span className="text-slate-300">{f}</span>
                 </div>
               ))}
             </div>

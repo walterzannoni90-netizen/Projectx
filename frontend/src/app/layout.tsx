@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Project X',
-  description: 'Platform',
+  title: { default: 'NUMMY', template: '%s · NUMMY' },
+  description: 'NUMMY — Intelligenza, innovazione e crescita. Smart. Simple. For you.',
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it">
+    <html lang="it" className="dark">
       <body>{children}</body>
     </html>
   );

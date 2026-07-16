@@ -10,11 +10,11 @@ export function Header() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 border-b border-white/10 bg-[#090B14]/80 backdrop-blur-xl">
       <div className="flex items-center justify-between px-4 lg:px-6 h-16">
         <button
           onClick={toggleSidebar}
-          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-600"
+          className="lg:hidden p-2 rounded-lg hover:bg-white/10 text-slate-300"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -24,18 +24,18 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/notifications"
-            className="relative p-2 rounded-lg hover:bg-gray-100 text-gray-500"
+            className="relative p-2 rounded-lg hover:bg-white/10 text-slate-400"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-magenta-500 rounded-full" />
           </Link>
 
-          <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
+          <div className="flex items-center gap-3 pl-3 border-l border-white/10">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-semibold text-gray-900">{user?.nickname || 'User'}</p>
-              <p className="text-xs text-gray-500">{user?.email}</p>
+              <p className="text-sm font-semibold text-white">{user?.nickname || 'User'}</p>
+              <p className="text-xs text-slate-400">{user?.email}</p>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20">
+            <div className="w-10 h-10 brand-gradient rounded-xl flex items-center justify-center shadow-md shadow-primary-500/20">
               <span className="text-sm font-semibold text-primary-700">
                 <span className="text-white">{(user?.nickname || 'U').charAt(0).toUpperCase()}</span>
               </span>

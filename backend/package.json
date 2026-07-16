@@ -1,7 +1,7 @@
 {
-  "name": "project-x-backend",
+  "name": "nummy-backend",
   "version": "1.0.0",
-  "description": "Project X - Backend API (NestJS)",
+  "description": "NUMMY - Backend API (NestJS)",
   "private": true,
   "scripts": {
     "build": "nest build",
